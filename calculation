@@ -76,7 +76,7 @@ switch (tNatureValue)
 //multiplication
 
 def mult = numTType * numtNature * numCatField * skuCountValue
-if mult != 0 {
+if (mult != 0) {
     return mult
 }
 else {
