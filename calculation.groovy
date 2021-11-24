@@ -3,79 +3,72 @@ import com.atlassian.jira.issue.Issue
 
 def cfManager = ComponentAccessor.customFieldManager
 
-//defining initial fields 
-
-def pTrasnferType = cfManager.getCustomFieldObject("customfield_13507")
-def catField = cfManager.getCustomFieldObject("customfield_13517")
-def tNature = cfManager.getCustomFieldObject("customfield_13514")
-def skuCount = cfManager.getCustomFieldObject("customfield_14503")
-
 //defining numeric assets
 
-def numTType = 0
-def numCatField = 0
-def numtNature = 0
+def numfield1 = 0
+def numfield2 = 0
+def numtfield3 = 0
 
 //getting values as list
 
-def pTransferTypeValue = issue.getCustomFieldValue(pTrasnferType) as List
-def catFieldValue = issue.getCustomFieldValue(catField) as List
-def tNatureValue = issue.getCustomFieldValue(tNature) as List
-def skuCountValue = issue.getCustomFieldValue(skuCount) as int
+def field1Value = issue.getCustomFieldValue(field1) as List
+def field2Value = issue.getCustomFieldValue(field2) as List
+def field3Value = issue.getCustomFieldValue(field2) as List
+def numfieldValue = issue.getCustomFieldValue(numfield) as int
 
 // Mapping options with numbers
-switch (pTransferTypeValue)
+switch (field1Value)
 {
-    case 'F&A':
-    numTType = 0.8
+    case 'option1':
+    numfield1 = 0.8
         break
-    case 'Make':
-    numTType = 1
+    case 'option2':
+    numfield1 = 1
         break
-    case 'Make & F&A':
-    numTType = 1.25
+    case 'option 2 + 3':
+    numfield1 = 1.25
         break
     default:
-        numTType = 0
+        numfield1 = 0
 }
-switch (catFieldValue)
+switch (field2Value)
 {
-    case 'Makeup I':
-    numCatField = 1
+    case 'option1':
+    numfield2 = 1
         break
     case 'Makeup II':
-    numCatField = 0.8
+    numfield2 = 0.8
         break
-    case 'SkinCare':
-    numCatField = 1
+    case 'option2':
+    numfield2 = 1
         break
-    case 'Fragrance':
-    numCatField = 1
+    case 'option3':
+    numfield2 = 1
         break
-    case 'Haircare':
-    numCatField = 1
+    case 'option4':
+    numfield2 = 1
         break
     default:
-        numCatField = 0
+        numfield2 = 0
 }
-switch (tNatureValue)
+switch (field3Value)
 {
-    case 'Disc':
-    numtNature = 1
+    case 'option x':
+    numfield3 = 1
         break
-    case 'Non-Disc':
-    numtNature = 1.2
+    case 'option y':
+    numfield3 = 1.2
         break
-    case 'OTC Non-Disc':
-    numtNature = 1.5
+    case 'option z':
+    numfield3 = 1.5
         break
     default:
-        numtNature = 0
+        numfield3 = 0
 }
 
 //multiplication
 
-def mult = numTType * numtNature * numCatField * skuCountValue
+def mult = numfield1 * numfield2 * numfield3 * numfieldValue
 if (mult != 0) {
     return mult
 }
